@@ -10,6 +10,7 @@ import com.parse.ParseException;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,7 +41,7 @@ public class MyPlacesActivity extends ListActivity {
         	for (int i = 0; i < placesId.size(); i++) {
         		ParseObject temp = new ParseObject("Place");
             	temp.setObjectId(placesId.get(i));
-            	temp.put("name", placesNames.get(i));
+            	temp.put("placeName", placesNames.get(i));
             	places.add(temp);
             	myPlaces.add(placesNames.get(i));
         	}
@@ -85,7 +86,12 @@ public class MyPlacesActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
     	
     	if (places != null) {
+    		Intent gotoReport = new Intent(MyPlacesActivity.this, PlaceReportActivity.class);
+            
+    		Log.i("myPlaces", "objectId " + places.get(position).getObjectId());
+    		gotoReport.putExtra("PLACE_NAME", places.get(position).getString("placeName"));
     		
+            startActivity(gotoReport);
     	} else {
     		
     	}

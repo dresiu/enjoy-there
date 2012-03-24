@@ -43,18 +43,12 @@ public class PlaceReportActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.place);
+		setContentView(R.layout.place_report);
 		placeId = this.getIntent().getStringExtra("PLACE_NAME");
-		boolean newPlace = true;
-		if (newPlace) {
-			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-			intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE",
-					"QR_CODE_MODE");
-			startActivityForResult(intent, 0);
-		}
+		
 
-		placeName = (EditText) findViewById(R.id.report_placeName);
-		placeDesc = (EditText) findViewById(R.id.report_placeDesc);
+		placeName = (TextView) findViewById(R.id.report_placeName);
+		placeDesc = (TextView) findViewById(R.id.report_placeDesc);
 		ratingBar = (RatingBar) findViewById(R.id.report_placeratingBar);
 		occupancy = (TextView) findViewById(R.id.report_occupancy);
 		occVals = getResources().getStringArray(R.array.occupancy_array);
@@ -68,18 +62,18 @@ public class PlaceReportActivity extends Activity {
 
 	private void loadPlace() {
 		ParseQuery query = new ParseQuery("Place");
-		query.whereEqualTo("objectId", placeId);
+		query.whereEqualTo("name", placeId);
 		try {
 			List<ParseObject> places = query.find();
 			placeName.setText(places.get(0).getString("name"));
-			placeDesc.setText(places.get(0).getString("placeDesc"));
 
 		} catch (ParseException e) {
 			Log.d("Place", "Error: " + e.getMessage());
 		}
 		
 		query = new ParseQuery("UserPlace");
-		query.whereEqualTo("name", placeName.getText());
+//		query.whereEqualTo("placeName", placeName.getText());
+		query.whereEqualTo("placeName", placeId);
 		try {
 			List<ParseObject> places = query.find();
 			
