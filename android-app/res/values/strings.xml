@@ -6,5 +6,8 @@
     <string name="search">Szukaj</string>
     <string name="my_visited_places">Moje miejsca</string>
     <string name="scan">Nowe miejsce</string>
+    <string name="placeName">nazwa</string>
+    <string name="placeDesc">opis</string>
+    <string name="placeSend">Wyślij!</string>
 
 </resources>
