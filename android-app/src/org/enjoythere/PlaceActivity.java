@@ -1,5 +1,7 @@
 package org.enjoythere;
 
+import java.util.Date;
+
 import com.parse.ParseObject;
 
 import android.app.Activity;
@@ -48,9 +50,15 @@ public class PlaceActivity extends Activity {
 				if (placeName.getText() != null &&
 						placeDesc.getText() != null) {
 					
-					ParseObject testObject = new ParseObject("Place");
+					Preferences pref = Preferences.Instance();
+			        pref.Initialize(getApplicationContext());
+					
+			        ParseObject testObject = new ParseObject("UserPlace");
+			        testObject.put("user", pref.GetLogin());
 			        testObject.put("placeName", placeName.getText().toString());
 			        testObject.put("placeDesc", placeDesc.getText().toString());
+			        testObject.put("placeVisitDate", new Date());
+			        
 			        testObject.saveInBackground();
 				} else {
 					Toast.makeText(getApplicationContext(), 
@@ -66,13 +74,8 @@ public class PlaceActivity extends Activity {
 				String contents = intent.getStringExtra("SCAN_RESULT");
 				String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 				Log.d("Reader", contents);
-				// Handle successful scan
-
-				Intent place = new Intent(this, PlaceActivity.class);
 				
-				place.putExtra("SCAN_CONTENT", contents);
 				
-				startActivity(place);
 
 			} else if (resultCode == RESULT_CANCELED) {
 				// Handle cancel

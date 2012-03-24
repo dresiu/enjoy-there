@@ -54,8 +54,8 @@ public class EnjoyThereActivity extends Activity {
         
         myPlacesBtn.setOnClickListener(new OnClickListener() {
         	public void onClick(View v) {
+        		startActivity(new Intent(EnjoyThereActivity.this, MyPlacesActivity.class));
         	}
-        	
         });
         
         scanBtn = (Button) findViewById(R.id.scanBtn);
