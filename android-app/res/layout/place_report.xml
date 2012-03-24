@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" 
-    android:background="@drawable/wiosna">
+    android:background="@drawable/wiosna_dark">
 
     <TextView
         android:id="@+id/report_placeNameTitle"
@@ -53,7 +53,8 @@
         android:gravity="center_vertical|center_horizontal"
         android:numStars="5"
         android:rating="5.0"
-        android:stepSize="1.0" />
+        android:stepSize="1.0"
+        android:isIndicator="true" />
 
     <ImageView
         android:id="@+id/placePhoto"
