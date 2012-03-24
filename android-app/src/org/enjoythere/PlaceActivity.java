@@ -1,9 +1,13 @@
 package org.enjoythere;
 
 import java.util.Date;
+import java.util.LinkedList;
 
 import java.util.List;
 import java.util.regex.Pattern;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -140,9 +144,28 @@ public class PlaceActivity extends Activity {
 			testObject.saveInBackground();
 			PlaceActivity.this.finish();
 			
-//			ParsePush push = new ParsePush();
-//			push.setMessage("Red Sox win 7-0!");
-//			push.sendInBackground();
+			
+			LinkedList<String> channels = new LinkedList<String>();
+			channels.add("clubbing");
+			ParsePush push = new ParsePush();
+//			push.setChannels(channels);
+//			push.setExpirationTimeInterval(86400);
+//			try {
+//				push.setData(new JSONObject("{\"action\": \"com.example.UPDATE_SCORE\", \"inning\": \"4th\", \"score_REDSOX\": \"5\", \"score_YANKEES\": \"0\"}"));
+//			} catch (JSONException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			try {
+//				push.setPushToAndroid(true);
+//				push.send();
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			push.setPushToAndroid(true);
+			push.setMessage("Odwiedzono: " + placeName.getText().toString());
+			push.sendInBackground();
 
 		} else {
 			Toast.makeText(getApplicationContext(),

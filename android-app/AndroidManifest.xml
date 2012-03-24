@@ -63,6 +63,12 @@
 		    <action android:name="android.intent.action.USER_PRESENT" />
 		  </intent-filter>
 		</receiver>
+		
+		<receiver android:name="org.enjoythere.MyCustomReceiver">
+		  <intent-filter>
+		    <action android:name="com.example.UPDATE_SCORE" />
+		  </intent-filter>
+		</receiver>
     </application>
 
 </manifest>
