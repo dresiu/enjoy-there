@@ -4,44 +4,64 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <EditText
         android:id="@+id/placeName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
+        android:gravity="center_vertical|center_horizontal"
         android:text="@string/placeName" />
-    
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <EditText
         android:id="@+id/placeDesc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_weight="0.04"
+        android:gravity="center_vertical|center_horizontal"
         android:text="@string/placeDesc" />
-    
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher" />
+
     <RatingBar
         android:id="@+id/placeratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
+        android:gravity="center_vertical|center_horizontal"
         android:numStars="5"
-        android:stepSize="1.0"
-        android:rating="2.0" />
-    
-    <ImageView 
-	   android:id="@+id/placePhoto"
-	   android:layout_width="wrap_content"
-	   android:layout_height="wrap_content"
-	   />
+        android:rating="5.0"
+        android:stepSize="1.0" />
+
+    <ImageView
+        android:id="@+id/placePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/placeSendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
+        android:gravity="center_vertical|center_horizontal"
         android:text="@string/placeSend" />
 
 </LinearLayout>
