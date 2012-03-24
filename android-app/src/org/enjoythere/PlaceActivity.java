@@ -25,12 +25,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PlaceActivity extends Activity {
 
 	Button sendBtn;
-	EditText placeName;
+	TextView placeName;
 	EditText placeDesc;
 	RatingBar ratingBar;
 	ImageView image;
@@ -51,7 +52,7 @@ public class PlaceActivity extends Activity {
 			startActivityForResult(intent, 0);
 		}
 
-		placeName = (EditText) findViewById(R.id.placeName);
+		placeName = (TextView) findViewById(R.id.placeName);
 		placeDesc = (EditText) findViewById(R.id.placeDesc);
 		ratingBar = (RatingBar) findViewById(R.id.placeratingBar);
 		image = (ImageView) findViewById(R.id.imageView1);
@@ -98,8 +99,8 @@ public class PlaceActivity extends Activity {
 				loadPlace();
 
 
-			} else if (resultCode == RESULT_CANCELED) {
-				// Handle cancel
+			} else if (resultCode == RESULT_CANCELED && requestCode == 0) {
+				this.finish();
 			}
 
 			if (resultCode == Activity.RESULT_OK && requestCode == 2) {
