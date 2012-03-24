@@ -1,0 +1,11 @@
+
+*.class
+*.war
+target/
+log/
+gen/
+lucene/
+bin/
+out/
+.idea/
+*.iml
