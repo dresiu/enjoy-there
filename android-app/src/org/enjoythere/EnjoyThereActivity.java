@@ -10,10 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class EnjoyThereActivity extends Activity {
 
-	EditText login;
+	TextView loginTW;
 	Button loginBtn;
 	Button scanBtn;
 	Button searchBtn;
@@ -33,22 +34,26 @@ public class EnjoyThereActivity extends Activity {
         
         myPlacesBtn = (Button) findViewById(R.id.myPlacesBtn);
         loginBtn = (Button) findViewById(R.id.loginBtn);
-        login = (EditText) findViewById(R.id.login);
+        loginTW = (TextView) findViewById(R.id.loginTW);
         
         Preferences pref = Preferences.Instance();
         pref.Initialize(getApplicationContext());
         
         if (pref.GetLogin() != null) {
-        	login.setText(pref.GetLogin());
+        	loginTW.setText(pref.GetLogin());
+        } else {
+        	startActivityForResult(new Intent(EnjoyThereActivity.this, LoginActivity.class), 3);
         }
         
         loginBtn.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				Preferences pref = Preferences.Instance();
-		        pref.Initialize(getApplicationContext());
-				pref.SetCredentials(login.getText().toString(), "");
-				pref.Save();
+//				Preferences pref = Preferences.Instance();
+//		        pref.Initialize(getApplicationContext());
+//				pref.SetCredentials(login.getText().toString(), "");
+//				pref.Save();
+//				startActivity(new Intent(EnjoyThereActivity.this, LoginActivity.class));
+				startActivityForResult(new Intent(EnjoyThereActivity.this, LoginActivity.class), 3);
 			}
 		});
         
@@ -75,5 +80,19 @@ public class EnjoyThereActivity extends Activity {
 				startActivity(new Intent(EnjoyThereActivity.this, PlaceActivity.class));
 			}
 		});
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	
+    	
+    	Preferences pref = Preferences.Instance();
+        pref.Initialize(getApplicationContext());
+        
+        if (pref.GetLogin() != null) {
+        	loginTW.setText(pref.GetLogin());
+        }
+    	
+    	super.onActivityResult(requestCode, resultCode, data);
     }
 }
