@@ -39,6 +39,8 @@ public class PlaceReportActivity extends Activity {
 	ImageView image;
 	TextView occupancy;
 	String [] occVals;
+	TextView totalCount;
+	TextView city;
 
 	String placeId;
 
@@ -54,6 +56,9 @@ public class PlaceReportActivity extends Activity {
 		ratingBar = (RatingBar) findViewById(R.id.report_placeratingBar);
 		occupancy = (TextView) findViewById(R.id.report_occupancy);
 		occVals = getResources().getStringArray(R.array.occupancy_array);
+		totalCount = (TextView) findViewById(R.id.report_totalCount);
+		city = (TextView) findViewById(R.id.report_City);
+	    
 	    
 		descs = new ArrayAdapter<String>(this, R.layout.list_item);
 		
@@ -67,11 +72,13 @@ public class PlaceReportActivity extends Activity {
 
 
 	private void loadPlace() {
+
 		ParseQuery query = new ParseQuery("Place");
 		query.whereEqualTo("name", placeId);
 		try {
 			List<ParseObject> places = query.find();
 			placeName.setText(places.get(0).getString("name"));
+			city.setText(places.get(0).getString("city"));
 
 		} catch (ParseException e) {
 			Log.d("Place", "Error: " + e.getMessage());
@@ -111,7 +118,8 @@ public class PlaceReportActivity extends Activity {
 				}
 				
 			}
-
+			
+			totalCount.setText("odwiedzone ju¿: "+places.size()+" razy");
 			occupancy.setText("oblezenie: "+occVals[maxInd]);
 			ratingBar.setRating((float)(ratingSum/places.size()));
 
