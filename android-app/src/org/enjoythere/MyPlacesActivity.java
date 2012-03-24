@@ -29,6 +29,9 @@ public class MyPlacesActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        getListView().setCacheColorHint(0);
+        getListView().setBackgroundResource(R.drawable.wiosna_dark);
+        
         ArrayList<String> placesId = getIntent().getStringArrayListExtra("placesId");
         ArrayList<String> placesNames = getIntent().getStringArrayListExtra("placesNames");
         if (placesNames != null) {

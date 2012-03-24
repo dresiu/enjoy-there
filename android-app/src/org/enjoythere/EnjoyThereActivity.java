@@ -2,6 +2,7 @@ package org.enjoythere;
 
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.parse.PushService;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,6 +28,8 @@ public class EnjoyThereActivity extends Activity {
         
         Parse.initialize(this, "bOBUxCViaQbtvA3hTsljZ501zfjEL5jXbefXPR2j", 
         		"Wmd7MO4Wa86GVN7c7LiZVDhGF575lc0ni13pttVE");
+        
+        PushService.subscribe(getApplicationContext(), "clubbing", EnjoyThereActivity.class);
         
 //        ParseObject testObject = new ParseObject("TestObject");
 //        testObject.put("foo", "bar");

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 
 import android.app.Activity;
@@ -137,6 +138,10 @@ public class PlaceActivity extends Activity {
 			testObject.put("currOccupancy", occupancy.getSelectedItem().toString());
 			testObject.saveInBackground();
 			PlaceActivity.this.finish();
+			
+//			ParsePush push = new ParsePush();
+//			push.setMessage("Red Sox win 7-0!");
+//			push.sendInBackground();
 
 		} else {
 			Toast.makeText(getApplicationContext(),
