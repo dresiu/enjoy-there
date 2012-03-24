@@ -53,20 +53,17 @@ public class EnjoyThereActivity extends Activity {
 		});
         
         myPlacesBtn.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View arg0) {
-				
-				
-			}
-		});
+        	public void onClick(View v) {
+        	}
+        	
+        });
         
         scanBtn = (Button) findViewById(R.id.scanBtn);
         
         scanBtn.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View arg0) {
-				Intent scan  = new Intent(getApplicationContext(), PlaceActivity.class);
-				startActivity(scan);
+				startActivity(new Intent(EnjoyThereActivity.this, PlaceActivity.class));
 			}
 		});
     }
