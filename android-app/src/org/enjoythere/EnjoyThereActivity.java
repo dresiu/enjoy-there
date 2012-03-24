@@ -32,6 +32,7 @@ public class EnjoyThereActivity extends Activity {
 //        PushService.subscribe(getApplicationContext(), "clubbing", EnjoyThereActivity.class);
         PushService.subscribe(getApplicationContext(), "", EnjoyThereActivity.class);
         
+        
 //        ParseObject testObject = new ParseObject("TestObject");
 //        testObject.put("foo", "bar");
 //        testObject.saveInBackground();
