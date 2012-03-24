@@ -1,5 +1,6 @@
 package org.enjoythere;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.parse.FindCallback;
@@ -23,44 +24,61 @@ public class MyPlacesActivity extends ListActivity {
 	private ArrayAdapter<String> myPlaces;
 	private static List<ParseObject> places;
 	
-	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // TODO pobraæ miejsca z parse.com i wyœwietliæ
+        ArrayList<String> placesId = getIntent().getStringArrayListExtra("placesId");
+        ArrayList<String> placesNames = getIntent().getStringArrayListExtra("placesNames");
+        if (placesNames != null) {
+        	Log.i("myPlaces", "searchresult " + placesNames.size());
+        	
+        	places = new ArrayList<ParseObject>();
+        	myPlaces = new ArrayAdapter<String>(getApplicationContext(),
+	        		R.layout.list_item);
+        	
+        	for (int i = 0; i < placesId.size(); i++) {
+        		ParseObject temp = new ParseObject("Place");
+            	temp.setObjectId(placesId.get(i));
+            	temp.put("name", placesNames.get(i));
+            	places.add(temp);
+            	myPlaces.add(placesNames.get(i));
+        	}
+        	
+        	setListAdapter(myPlaces);
+        } else {
         
-        Preferences pref = Preferences.Instance();
-        pref.Initialize(getApplicationContext());
-        
-        myPlaces = new ArrayAdapter<String>(getApplicationContext(),
-        		R.layout.list_item);
-        
-        ParseQuery query = new ParseQuery("UserPlace");
-        query.whereEqualTo("user", pref.GetLogin());
-        query.findInBackground(new FindCallback() {
-            public void done(List<ParseObject> placesList, ParseException e) {
-            	myPlaces = new ArrayAdapter<String>(getApplicationContext(),
-                		R.layout.list_item);
-            	
-                if (e == null) {
-                	places = placesList;
-                    for(ParseObject place : places) {
-                    	if (place.getDate("placeVisitDate") != null) {
-                    		myPlaces.add(place.getString("placeName") + " " + 
-                    				place.getDate("placeVisitDate").toLocaleString());
-                    	} else {
-                    		myPlaces.add(place.getString("placeName"));
-                    	}
-                    }
-                } else {
-                    Log.d("score", "Error: " + e.getMessage());
-                }
-                
-                setListAdapter(myPlaces);
-            }
-        });
-        
+	        Preferences pref = Preferences.Instance();
+	        pref.Initialize(getApplicationContext());
+	        
+	        myPlaces = new ArrayAdapter<String>(getApplicationContext(),
+	        		R.layout.list_item);
+	        
+	        ParseQuery query = new ParseQuery("UserPlace");
+	        query.whereEqualTo("user", pref.GetLogin());
+	        query.findInBackground(new FindCallback() {
+	            public void done(List<ParseObject> placesList, ParseException e) {
+	            	myPlaces = new ArrayAdapter<String>(getApplicationContext(),
+	                		R.layout.list_item);
+	            	
+	                if (e == null) {
+	                	places = placesList;
+	                    for(ParseObject place : places) {
+	                    	if (place.getDate("placeVisitDate") != null) {
+	                    		myPlaces.add(place.getString("placeName") + " " + 
+	                    				place.getDate("placeVisitDate").toLocaleString());
+	                    	} else {
+	                    		myPlaces.add(place.getString("placeName"));
+	                    	}
+	                    }
+	                } else {
+	                    Log.d("score", "Error: " + e.getMessage());
+	                }
+	                
+	                setListAdapter(myPlaces);
+	            }
+	        });
+        }
     }
     
     @Override
@@ -68,10 +86,8 @@ public class MyPlacesActivity extends ListActivity {
     	
     	if (places != null) {
     		
-    		Log.d("MyPlacesActivity", places.get(position).getString("placeName"));
     	} else {
     		
-			Log.d("MyPlacesActivity", "places == null");
     	}
     }
 }

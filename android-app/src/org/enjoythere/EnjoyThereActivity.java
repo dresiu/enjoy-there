@@ -58,6 +58,15 @@ public class EnjoyThereActivity extends Activity {
         	}
         });
         
+        searchBtn = (Button) findViewById(R.id.searchBtn);
+        
+        searchBtn.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View arg0) {
+				startActivity(new Intent(EnjoyThereActivity.this, SearchActivity.class));
+			}
+		});
+        
         scanBtn = (Button) findViewById(R.id.scanBtn);
         
         scanBtn.setOnClickListener(new OnClickListener() {
