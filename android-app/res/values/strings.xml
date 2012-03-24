@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, EnjoyThereActivity!</string>
     <string name="app_name">Enjoy There</string>
+    <string name="search">Szukaj</string>
+    <string name="my_visited_places">Moje miejsca</string>
+    <string name="scan">Nowe miejsce</string>
 
 </resources>
