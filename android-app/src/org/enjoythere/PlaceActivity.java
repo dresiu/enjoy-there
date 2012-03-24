@@ -19,9 +19,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class PlaceActivity extends Activity {
@@ -31,6 +33,7 @@ public class PlaceActivity extends Activity {
 	EditText placeDesc;
 	RatingBar ratingBar;
 	ImageView image;
+	Spinner occupancy;
 
 	String currentId;
 
@@ -54,6 +57,13 @@ public class PlaceActivity extends Activity {
 
 		sendBtn = (Button) findViewById(R.id.placeSendBtn);
 
+		occupancy = (Spinner) findViewById(R.id.spinner);
+	    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+	            this, R.array.occupancy_array, android.R.layout.simple_spinner_item);
+	    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    occupancy.setAdapter(adapter);
+
+	    
 		image.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -69,25 +79,8 @@ public class PlaceActivity extends Activity {
 		sendBtn.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-
-				if (placeName.getText() != null && placeDesc.getText() != null) {
-
-					Preferences pref = Preferences.Instance();
-			        pref.Initialize(getApplicationContext());
-					
-			        ParseObject testObject = new ParseObject("UserPlace");
-			        testObject.put("user", pref.GetLogin());
-			        testObject.put("placeVisitDate", new Date());
-					testObject.put("placeName", placeName.getText().toString());
-					testObject.put("placeDesc", placeDesc.getText().toString());
-					testObject.put("myRating", ratingBar.getRating());
-					testObject.saveInBackground();
-					PlaceActivity.this.finish();
-
-				} else {
-					Toast.makeText(getApplicationContext(),
-							"Wype³nij wszystkie dane!", Toast.LENGTH_SHORT);
-				}
+				addUserPlace();
+				
 			}
 		});
 	}
@@ -130,7 +123,25 @@ public class PlaceActivity extends Activity {
 	}
 	
 	private void addUserPlace(){
+		if (placeName.getText() != null && placeDesc.getText() != null) {
 
+			Preferences pref = Preferences.Instance();
+	        pref.Initialize(getApplicationContext());
+			
+	        ParseObject testObject = new ParseObject("UserPlace");
+	        testObject.put("user", pref.GetLogin());
+	        testObject.put("placeVisitDate", new Date());
+			testObject.put("placeName", placeName.getText().toString());
+			testObject.put("placeDesc", placeDesc.getText().toString());
+			testObject.put("myRating", ratingBar.getRating());
+			testObject.put("currOccupancy", occupancy.getSelectedItem().toString());
+			testObject.saveInBackground();
+			PlaceActivity.this.finish();
+
+		} else {
+			Toast.makeText(getApplicationContext(),
+					"Wype³nij wszystkie dane!", Toast.LENGTH_SHORT);
+		}
 		
 	}
 }

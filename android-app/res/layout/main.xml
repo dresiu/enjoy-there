@@ -5,10 +5,7 @@
     android:orientation="vertical"
     android:background="@drawable/wiosna" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+
 
     <TextView
         android:id="@+id/textView1"
@@ -27,31 +24,47 @@
     </EditText>
 
     <Button
+        android:layout_margin="3dp"
         android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="#2077E8"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
         android:text="Login" />
 
     <Button
+        android:textSize="20dp"
+        android:layout_margin="3dp"
         android:id="@+id/scanBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="#2077E8"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColor="@android:color/white"
         android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
         android:text="@string/scan" />
 
     <Button
+        android:textSize="20dp"
+        android:layout_margin="3dp"
         android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="#2077E8"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColor="@android:color/white"
         android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
         android:text="@string/search" />
 
     <Button
+        android:textSize="20dp"
+        android:layout_margin="3dp"
         android:id="@+id/myPlacesBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="#2077E8"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColor="@android:color/white"
         android:gravity="center_vertical|center_horizontal" 
         android:layout_gravity="center_vertical|center_horizontal|center"
         android:text="@string/my_visited_places" />
