@@ -9,5 +9,14 @@
     <string name="placeName">nazwa</string>
     <string name="placeDesc">opis</string>
     <string name="placeSend">Wyślij!</string>
+    <string name="placeOccup">Oblężenie miejsca</string>
 
+    <string-array name="occupancy_array">
+        <item>Zatłoczone</item>
+        <item>Sporo</item>
+        <item>Idealnie</item>
+        <item>Pusto</item>
+        
+    </string-array>
+    
 </resources>
