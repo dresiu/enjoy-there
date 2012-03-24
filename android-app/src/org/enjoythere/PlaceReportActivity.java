@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -30,9 +31,10 @@ import android.widget.Toast;
 
 public class PlaceReportActivity extends Activity {
 
+	private ArrayAdapter<String> descs;
 	Button sendBtn;
 	TextView placeName;
-	TextView placeDesc;
+	ListView placeDesc;
 	RatingBar ratingBar;
 	ImageView image;
 	TextView occupancy;
@@ -48,11 +50,15 @@ public class PlaceReportActivity extends Activity {
 		
 
 		placeName = (TextView) findViewById(R.id.report_placeName);
-		placeDesc = (TextView) findViewById(R.id.report_placeDesc);
+		placeDesc = (ListView) findViewById(R.id.report_placeDesc);
 		ratingBar = (RatingBar) findViewById(R.id.report_placeratingBar);
 		occupancy = (TextView) findViewById(R.id.report_occupancy);
 		occVals = getResources().getStringArray(R.array.occupancy_array);
 	    
+		descs = new ArrayAdapter<String>(this, R.layout.list_item);
+		
+		placeDesc.setAdapter(descs);
+		
 		loadPlace();
 
 		
@@ -91,7 +97,7 @@ public class PlaceReportActivity extends Activity {
 				}
 				
 				ratingSum += obj.getDouble("myRating");
-					
+				descs.add(obj.getString("placeDesc"));	
 			}
 			
 			int maxInd = 0;

@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/wiosna"
+     >
 
     <TextView
         android:id="@+id/textView1"
@@ -64,10 +66,11 @@
 
     <Button
         android:id="@+id/placeSendBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|center"
-        android:gravity="center_vertical|center_horizontal"
+        android:background="#2077E8"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
         android:text="@string/placeSend" />
 
 </LinearLayout>
